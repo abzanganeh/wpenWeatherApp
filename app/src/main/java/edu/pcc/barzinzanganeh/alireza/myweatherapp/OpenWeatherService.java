@@ -32,14 +32,17 @@ public class OpenWeatherService {
         try {
 
             JSONObject rootJSON = new JSONObject(responseJSON);
+
             JSONArray weatherJSON = rootJSON.getJSONArray("weather");
             JSONObject weatherItemsJSON = weatherJSON.getJSONObject(0);
+
+            String city = rootJSON.getString("name");
             int id = weatherItemsJSON.getInt("id");
             String main = weatherItemsJSON.getString("main");
             String description = weatherItemsJSON.getString("description");
             String icon = weatherItemsJSON.getString("icon");
 
-            Weather weather = new Weather(id, main, description, icon );
+            Weather weather = new Weather(city, id, main, description, icon );
             //weathers.add(weather);
             return weather;
         } catch (JSONException e) {

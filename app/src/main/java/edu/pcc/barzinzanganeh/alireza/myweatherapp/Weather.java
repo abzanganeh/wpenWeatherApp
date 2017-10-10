@@ -5,7 +5,7 @@ package edu.pcc.barzinzanganeh.alireza.myweatherapp;
  */
 
 public class Weather {
-    //private String mCity;
+    private String mCity;
     private int mWeatherID;
     private String mWeatherMain;
     private String mWeatherDescription;
@@ -15,9 +15,9 @@ public class Weather {
 //    private float mMainTempMax;
 //    private float mWindSpeed;
 
-    public Weather(int mWeatherID, String mWeatherMain, String mWeatherDescription,
+    public Weather(String mCity, int mWeatherID, String mWeatherMain, String mWeatherDescription,
                    String mWeatherIcon) {
-//        this.mCity = mCity;
+        this.mCity = mCity;
         this.mWeatherID = mWeatherID;
         this.mWeatherMain = mWeatherMain;
         this.mWeatherDescription = mWeatherDescription;
@@ -32,9 +32,9 @@ public class Weather {
         return mWeatherIcon;
     }
 
-//    public String getmCity() {
-//        return mCity;
-//    }
+    public String getmCity() {
+        return mCity;
+    }
 
     public int getmWeatherID() {
         return mWeatherID;

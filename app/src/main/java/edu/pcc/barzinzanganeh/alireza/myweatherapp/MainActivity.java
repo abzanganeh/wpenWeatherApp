@@ -4,7 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -14,7 +19,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private final String TAG = this.getClass().getSimpleName();
 
     private Activity mContext;
@@ -23,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.weather_description) TextView mWeatherDescription;
     @BindView(R.id.weather_main) TextView mWeatherMain;
     @BindView(R.id.weather_icon) TextView mWeatherIcon;
+    @BindView(R.id.weather_image_icon) ImageView mWeatherImageIcon;
+    @BindView(R.id.city_name) TextView mCityName;
+    @BindView(R.id.city_input) EditText mCityInput;
+//    @BindView(R.id.web_icon) WebView mWebIcon;
+
+
 //public ArrayList<Weather> mWeathers = new ArrayList<>();
 
 
@@ -33,7 +44,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mContext = this;
+        mCityInput.setOnClickListener(this);
+    }
 
+    @Override
+    public void onClick(View view) {
+        EditText text = (EditText)findViewById(R.id.city_input);
+        final String mUserCity = text .getText().toString();
         Callback callback = new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -52,23 +69,28 @@ public class MainActivity extends AppCompatActivity {
                         Weather mWeathers = OpenWeatherService.processResults(responseJSON);
                         Log.d(TAG, "mWeathers is produced.");
                         System.out.println(mWeathers);
+                        final String mCity = mWeathers.getmCity();
                         final int mID = mWeathers.getmWeatherID();
                         final String mMain = mWeathers.getmWeatherMain();
                         final String mDescription = mWeathers.getmWeatherDescription();
                         final String mIcon = mWeathers.getmWeatherIcon();
                         Log.d(TAG, "mID is produced.");
-                       // System.out.println(mID);
-                        System.out.println(mMain);
-                        System.out.println(mDescription);
-                        System.out.println(mIcon);
+//                        System.out.println(mID);
+//                        System.out.println(mMain);
+//                        System.out.println(mDescription);
+//                        System.out.println(mIcon);
 
                         mContext.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                mCityName.setText(mCity);
                                 mWeatherID.setText(Integer.toString(mID));
                                 mWeatherMain.setText(mMain);
                                 mWeatherDescription.setText(mDescription);
                                 mWeatherIcon.setText(mIcon);
+                                Picasso.with(mContext).load(Constants.OPEN_WEATHER_ICON_URL + mIcon+ ".png").into( mWeatherImageIcon);
+//                                WebView web = (WebView) findViewById(R.id.web_icon);
+//                                web.loadUrl(Constants.OPEN_WEATHER_ICON_URL + mIcon + ".png");
                             }
                         });
 
@@ -84,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        OpenWeatherService.forecastWeather("Portland", callback);
-
+        OpenWeatherService.forecastWeather(mUserCity, callback);
     }
-
 }
