@@ -24,8 +24,7 @@
         android:layout_height="60dp"
         android:layout_below="@+id/txtString"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        app:srcCompat="@android:drawable/dialog_holo_light_frame" />
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:id="@+id/city_name"
@@ -108,6 +107,15 @@
         android:text="TextView"
         android:visibility="invisible" />
 
+    <TextView
+        android:id="@+id/temp_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/condition_description"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="It is Cool!!" />
+
     <WebView
         android:id="@+id/web_icon"
         android:layout_width="50dp"
@@ -121,9 +129,10 @@
         android:id="@+id/input_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/condition_description"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/temp_view"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:id="@+id/textView4"
@@ -138,8 +147,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:background="@null"
             android:imeOptions="actionDone"
-            android:inputType="text" />
+            android:inputType="text"
+            android:text="   Portland" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/city_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:text="How is Weather?"
+        android:layout_below="@+id/weather_icon"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

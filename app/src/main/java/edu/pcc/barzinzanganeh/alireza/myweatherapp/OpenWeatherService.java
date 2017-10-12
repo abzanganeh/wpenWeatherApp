@@ -19,7 +19,7 @@ public class OpenWeatherService {
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
 
-        String myUrl = Constants.OPEN_WEATHER_BASE_URL +"?q=" + city+"&APPID="+ Constants.OPEN_WEATHER_KEY;
+        String myUrl = Constants.OPEN_WEATHER_BASE_URL +"?q=" + city+"&APPID=f0484ffaa31481367a2cc852d18f475d";
         Log.d("URL: ", myUrl);
         Request request = new Request.Builder().url(myUrl)
                 .build();
@@ -34,15 +34,18 @@ public class OpenWeatherService {
             JSONObject rootJSON = new JSONObject(responseJSON);
 
             JSONArray weatherJSON = rootJSON.getJSONArray("weather");
+            JSONObject mainJSON = rootJSON.getJSONObject("main");
             JSONObject weatherItemsJSON = weatherJSON.getJSONObject(0);
 
+
+            double temp = mainJSON.getDouble("temp");
             String city = rootJSON.getString("name");
             int id = weatherItemsJSON.getInt("id");
             String main = weatherItemsJSON.getString("main");
             String description = weatherItemsJSON.getString("description");
             String icon = weatherItemsJSON.getString("icon");
 
-            Weather weather = new Weather(city, id, main, description, icon );
+            Weather weather = new Weather(city, id, main, description, icon, temp );
             //weathers.add(weather);
             return weather;
         } catch (JSONException e) {
