@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -35,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.city_name) TextView mCityName;
     @BindView(R.id.city_input) EditText mCityInput;
     @BindView(R.id.city_button) Button mCityButton;
+    @BindView(R.id.humidity_view) TextView mHumidityView;
+    @BindView(R.id.seekbar) SeekBar mSeekbar;
 //    @BindView(R.id.web_icon) WebView mWebIcon;
 
 
@@ -80,13 +85,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         final String mIcon = mWeathers.getmWeatherIcon();
                         double mTemp = mWeathers.getmTemp();
                         mTemp = 1.8 * (mTemp - 273) + 32;
+                        final int mHumidity = mWeathers.getmMainHumidity();
                         final double mTempF = Double.parseDouble(new DecimalFormat("###.#").format(mTemp));
                         Log.d(TAG, "mID is produced.");
 //                        System.out.println(mID);
 //                        System.out.println(mMain);
 //                        System.out.println(mDescription);
 //                        System.out.println(mIcon);
-
+// // TODO: 11/12/17 Add function for menu to do change the temperature toggle between C and F
                         mContext.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -95,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 mWeatherMain.setText(mMain);
                                 mWeatherDescription.setText(mDescription);
                                 mWeatherIcon.setText(mIcon);
+                                mHumidityView.setText(Integer.toString(mHumidity));
+                                mSeekbar.setProgress(mHumidity);
                                 mTempView.setText((Double.toString(mTempF)) + "  F");
                                 Picasso.with(mContext).load(Constants.OPEN_WEATHER_ICON_URL + mIcon+ ".png").into( mWeatherImageIcon);
 //                                WebView web = (WebView) findViewById(R.id.web_icon);
@@ -115,5 +123,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         };
 
         OpenWeatherService.forecastWeather(mUserCity, callback);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_action_celsius:
+
+                break;
+            case R.id.menu_action_fahrenheit:
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

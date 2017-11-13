@@ -28,7 +28,7 @@ public class OpenWeatherService {
     }
 
     public static Weather processResults(String responseJSON) {
-        //ArrayList<Weather> weathers = new ArrayList<>();
+
         try {
 
             JSONObject rootJSON = new JSONObject(responseJSON);
@@ -44,8 +44,9 @@ public class OpenWeatherService {
             String main = weatherItemsJSON.getString("main");
             String description = weatherItemsJSON.getString("description");
             String icon = weatherItemsJSON.getString("icon");
+            int humidity = mainJSON.getInt("humidity");
 
-            Weather weather = new Weather(city, id, main, description, icon, temp );
+            Weather weather = new Weather(city, id, main, description, icon, temp, humidity );
             //weathers.add(weather);
             return weather;
         } catch (JSONException e) {

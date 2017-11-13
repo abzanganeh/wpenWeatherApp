@@ -12,19 +12,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:paddingTop="25dp"
-        android:text="Weather Report"
+        android:layout_marginTop="@dimen/ten_dp"
+        android:paddingTop="@dimen/twentyfive_dp"
+        android:text="@string/weather_report"
         android:textColor="@android:color/black"
-        android:textSize="24sp" />
+        android:textSize="@dimen/larg_size" />
 
     <ImageView
         android:id="@+id/weather_image_icon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/sixty_dp"
+        android:layout_height="@dimen/sixty_dp"
         android:layout_below="@+id/txtString"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="@dimen/ten_dp" />
 
     <TextView
         android:id="@+id/city_name"
@@ -32,9 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/weather_image_icon"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/ten_dp"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="30sp" />
+        android:textSize="@dimen/very_larg_size" />
 
     <TextView
         android:id="@+id/weather_id"
@@ -42,8 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/city_name"
         android:layout_centerHorizontal="true"
-        android:paddingTop="10dp"
-        android:text="TextView"
+        android:paddingTop="@dimen/ten_dp"
         android:visibility="invisible" />
 
     <LinearLayout
@@ -59,21 +58,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingEnd="10dp"
-            android:text="Condition:"
+            android:paddingEnd="@dimen/ten_dp"
+            android:text="@string/condition"
             android:textColor="@android:color/holo_green_dark"
-            android:textSize="18sp" />
+            android:textSize="@dimen/mid_size" />
 
         <TextView
             android:id="@+id/weather_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/weather_id"
-            android:layout_centerHorizontal="true"
             android:layout_weight="1"
-            android:paddingTop="10dp"
+            android:paddingTop="@dimen/ten_dp"
             android:textColor="@android:color/holo_green_dark"
-            android:textSize="18sp" />
+            android:textSize="@dimen/mid_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -82,19 +79,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/condition_main"
         android:layout_centerHorizontal="true"
-        android:layout_weight="1"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/weather_description"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/weather_main"
-            android:layout_centerHorizontal="true"
             android:layout_weight="1"
-            android:paddingTop="10dp"
+            android:paddingTop="@dimen/ten_dp"
             android:textColor="@android:color/holo_green_dark"
-            android:textSize="18sp" />
+            android:textSize="@dimen/mid_size" />
     </LinearLayout>
 
     <TextView
@@ -103,8 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/input_data"
         android:layout_centerHorizontal="true"
-        android:paddingTop="10dp"
-        android:text="TextView"
+        android:paddingTop="@dimen/ten_dp"
         android:visibility="invisible" />
 
     <TextView
@@ -113,52 +106,93 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/condition_description"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="It is Cool!!" />
+        android:layout_marginTop="@dimen/fiftheen_dp"
+        android:text="@string/it_is_cool" />
+
+    <TextView
+        android:id="@+id/humidity_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/temp_view"
+        android:layout_centerHorizontal="true"
+        android:text="@string/humidity_percent"
+        android:layout_marginTop="@dimen/min_dp" />
+
+<LinearLayout
+    android:id="@+id/seek_bar_layout"
+    android:layout_below="@+id/humidity_text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+
+    android:layout_marginTop="@dimen/min_dp">
+
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_width="18dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/humidity_view"
+        android:ems="2"
+        android:text="80"
+        android:layout_weight="0.01" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/percent"
+        android:ems="1"
+        android:text="%" />
+</LinearLayout>
+
+
 
     <WebView
         android:id="@+id/web_icon"
-        android:layout_width="50dp"
+        android:layout_width="@dimen/fifty_dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/weather_image_icon"
+        android:layout_below="@+id/seek_bar_layout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/ten_dp"
         android:visibility="invisible" />
 
     <LinearLayout
         android:id="@+id/input_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        android:layout_below="@+id/temp_view"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/seek_bar_layout"
+        android:layout_marginTop="@dimen/ten_dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:text="Enter the city Name:" />
+            android:paddingStart="@dimen/ten_dp"
+            android:paddingTop="@dimen/ten_dp"
+            android:text="@string/enter_the_city_name" />
 
         <EditText
             android:id="@+id/city_input"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:background="@null"
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:text="   Portland" />
+            android:text="@string/portland" />
     </LinearLayout>
 
     <Button
         android:id="@+id/city_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:text="How is Weather?"
+        android:layout_marginTop="@dimen/thirty_dp"
+        android:text="@string/how_is_weather"
         android:layout_below="@+id/weather_icon"
         android:layout_centerHorizontal="true" />
 

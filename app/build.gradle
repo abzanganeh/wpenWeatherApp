@@ -18,9 +18,9 @@ android {
         }
     }
 
-    buildTypes.each {
-        it.buildConfigField('String', 'OPEN_WEATHER_KEY', OpenWeatherKey)
-    }
+//    buildTypes.each {
+//        it.buildConfigField('String', 'OPEN_WEATHER_KEY', OpenWeatherKey)
+//    }
 }
 
 dependencies {

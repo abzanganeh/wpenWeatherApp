@@ -11,7 +11,7 @@ public class Weather {
     private String mWeatherDescription;
     private String mWeatherIcon;
     private double mTemp;
-//    private float mMainHumidity;
+    private int mMainHumidity;
 //    private float mMainTempMin;
 //    private float mMainTempMax;
 //    private float mWindSpeed;
@@ -19,18 +19,20 @@ public class Weather {
 
 
     public Weather(String mCity, int mWeatherID, String mWeatherMain, String mWeatherDescription,
-                   String mWeatherIcon, double mTemp) {
+                   String mWeatherIcon, double mTemp, int mMainHumidity) {
         this.mCity = mCity;
         this.mWeatherID = mWeatherID;
         this.mWeatherMain = mWeatherMain;
         this.mWeatherDescription = mWeatherDescription;
         this.mWeatherIcon = mWeatherIcon;
         this.mTemp = mTemp;
+        this.mMainHumidity = mMainHumidity;
 //        this.mMainHumidity = mMainHumidity;
 //        this.mMainTempMin = mMainTempMin;
 //        this.mMainTempMax = mMainTempMax;
 //        this.mWindSpeed = mWindSpeed;
     }
+
 
     public double getmTemp() {
         return mTemp;
@@ -56,6 +58,7 @@ public class Weather {
         return mWeatherDescription;
     }
 
+    public int getmMainHumidity() { return mMainHumidity; }
 //    public float getmMainHumidity() {
 //        return mMainHumidity;
 //    }
